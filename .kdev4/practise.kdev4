@@ -18,17 +18,17 @@ Launch Configurations=Launch Configuration 0
 [Launch][Launch Configuration 0]
 Configured Launch Modes=execute
 Configured Launchers=nativeAppLauncher
-Name=New Compiled Binary Launcher (2)
+Name=practisce
 Type=Native Application
 
 [Launch][Launch Configuration 0][Data]
 Arguments=
-Dependencies=@Variant(\x00\x00\x00\t\x00\x00\x00\x00\x00)
-Dependency Action=Nothing
+Dependencies=@Variant(\x00\x00\x00\t\x00\x00\x00\x00\x01\x00\x00\x00\x0b\x00\x00\x00\x00\x02\x00\x00\x00\x10\x00p\x00r\x00a\x00c\x00t\x00i\x00s\x00e\x00\x00\x00\x12\x00p\x00r\x00a\x00c\x00t\x00i\x00s\x00c\x00e)
+Dependency Action=Build
 EnvironmentGroup=
 Executable=file:///home/gauravalgo/practise
 External Terminal=konsole --noclose --workdir %workdir -e %exe
 Project Target=practise,practisce
 Use External Terminal=false
 Working Directory=
-isExecutable=true
+isExecutable=false

@@ -228,9 +228,23 @@ void test_and_release()
    // std::unique_ptr<Person> q=std::make_unique<Person>(p1);
     
 }
-
+void CT_intialization()
+{
+    const int n =10;
+    int* p = (int *)(&n);
+    
+    *p=0;
+    std::cout<<"             n== "<<std::setw(3)<<n<<" /t &n ="<<&n<<std::endl;
+    
+}
+void RT_intialization()
+{
+    
+}
 int main(int argc, char **argv)
 {
+    CT_intialization();
+    RT_intialization();
     initialization();
     //test_unique_ptr_with_class_type();
     test_reset();
