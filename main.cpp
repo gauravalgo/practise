@@ -54,36 +54,6 @@ void initialization()
         std::cout<< "a6=" << a6 <<std::endl;
     
 }
-
-  
-    /// std::clone_unique for single objects
-  template<typename _Tp>
-      std::unique_ptr<_Tp> clone_unique(const std::unique_ptr<_Tp>& uptr)
-    { 
-        if(uptr)
-        return std::unique_ptr<_Tp>{new _Tp{*uptr}};
-        else
-        return std::unique_ptr<_Tp>{nullptr};
-        
-    }
-    template<typename _Tp, typename... _Args>
-    typename std::_MakeUniq<_Tp>::__single_object my_make_unique(_Args&&... __args)
-    { 
-        return std::unique_ptr<_Tp>(new _Tp{std::forward<_Args>(__args)...}); 
-        
-    }
-    
-void test_unique_ptr_with_class_type()
-{
-    std::unique_ptr<Aggreagate> aptr(new Aggreagate{"Steve",20});
-    std::unique_ptr<NonAggregate> nptr(new NonAggregate{"gaurav",30});
-    std::cout<< "aptr=" <<*aptr<<std::endl;
-    std::cout<< "nptr=" <<*nptr<<std::endl;
-    std::unique_ptr<Aggreagate> aptr1=my_make_unique<Aggreagate>("Steve",20);
-    std::unique_ptr<NonAggregate> nptr1=my_make_unique<NonAggregate>("gaurav",30);
-    std::cout<< "aptr1=" <<*aptr1<<std::endl;
-    std::cout<< "nptr1=" <<*nptr1<<std::endl;
-}
 class Person
 {
 private:
@@ -105,6 +75,31 @@ public:
     
     
 };
+  
+    /// std::clone_unique for single objects
+  template<typename _Tp>
+      std::unique_ptr<_Tp> clone_unique(const std::unique_ptr<_Tp>& uptr)
+    { 
+        if(uptr)
+        return std::unique_ptr<_Tp>{new _Tp{*uptr}};
+        else
+        return std::unique_ptr<_Tp>{nullptr};
+        
+    }
+    
+    
+void test_unique_ptr_with_class_type()
+{
+    std::unique_ptr<Aggreagate> aptr(new Aggreagate{"Steve",20});
+    std::unique_ptr<NonAggregate> nptr(new NonAggregate{"gaurav",30});
+    std::cout<< "aptr=" <<*aptr<<std::endl;
+    std::cout<< "nptr=" <<*nptr<<std::endl;
+   // std::unique_ptr<Aggreagate> aptr1=std::make_unique<Aggreagate>("Steve",20);
+   // std::unique_ptr<NonAggregate> nptr1=std::make_unique<NonAggregate>("gaurav",30);
+   // std::cout<< "aptr1=" <<*aptr1<<std::endl;
+   // std::cout<< "nptr1=" <<*nptr1<<std::endl;
+}
+
 void test_reset()
 {
         std::unique_ptr<Person> uptr(new Person{20,"hema"});
@@ -230,31 +225,14 @@ void test_and_release()
     std::unique_ptr<Person> p{new Person{34,"the great warrior"}};
     Person *p1=p.release();
     delete p1;
-    std::unique_ptr<Person> q=std::make_unique<Person>(p1);
+   // std::unique_ptr<Person> q=std::make_unique<Person>(p1);
     
 }
-class Matrix_t
-{
-    public:
-        //copy constructor
-        Matrix_t(const Matrix_t& rhs);
-        {
-            //dynamically allocate memory for its elements
-        }
-        
-        Matrix_t& operator=(const Matrix_t& rhs)
-        {
-            //release any existing resoursce.
-            
-            //dynamically allocate memory for its elements
-        }
-        
-    
-};
+
 int main(int argc, char **argv)
 {
     initialization();
-    test_unique_ptr_with_class_type();
+    //test_unique_ptr_with_class_type();
     test_reset();
     test_unique_move();
     test_clone_unique();
