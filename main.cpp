@@ -2,7 +2,7 @@
 #include <memory>
 #include <string>
 #include <type_traits>
-
+using namespace std;
 class Aggreagate
 {
 public :
@@ -234,13 +234,32 @@ void CT_intialization()
     int* p = (int *)(&n);
     
     *p=0;
-    std::cout<<"             n== "<<std::setw(3)<<n<<" /t &n ="<<&n<<std::endl;
-    
+  //  std::cout<<"             n== "<<std::setw(3)<<n<<" /t &n ="<<&n<<std::endl;
+    //std::cout<<"             n== "<<std::setw(3)<<n<<" /t &n ="<<&n<<std::endl;
 }
 void RT_intialization()
 {
     
 }
+  template<typename T>
+  T max1(T a,T b)
+  {
+    cout<<"tempalte\n";
+    return a>b?a:b;
+  }
+  
+  int max1(int  a,int b)
+  {
+    cout<<"non tempalte with integer\n";
+    return a>b?a:b;
+  }
+  
+  
+  char max1(char  a,char b)
+  {
+    cout<<"non tempalte with character\n";
+    return a>b?a:b;
+  }
 int main(int argc, char **argv)
 {
     CT_intialization();
@@ -250,6 +269,11 @@ int main(int argc, char **argv)
     test_reset();
     test_unique_move();
     test_clone_unique();
+    max1(1,2) ;//----->  call non templatize version
+  max1('a','b');// ------> call templatize version why beause template would not do any automatic type promotion.  
+  max1(1,'a') ;//----> call templatize version
+  max1('e',1);
+  max1(1.23,1.56);
      return 0;
 }
 
